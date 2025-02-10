@@ -13,6 +13,8 @@ body {
   font-style: normal;
 
   color: #fff;
+
+  overflow: hidden;
 }
 
 a {

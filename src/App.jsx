@@ -1,14 +1,30 @@
+import { useRef, useEffect } from 'react'
+
 import Contract from './Contract'
 
 import './App.css'
 
 function App() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.controls = false; // Force-disable controls
+    }
+  }, []);
+
   return <>
     <div className='static-bg' />
-    <video autoPlay muted loop id="bgVideo">
-      <source src="/bg_video.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    <div style={{ pointerEvents: "none" }}>
+      <video autoPlay muted loop id="bgVideo"
+        playsInline
+        controls={false}
+        ref={videoRef}
+      >
+        <source src="/bg_video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
     <div className='wrapper'>
       <header className={'header loaded'}>
